@@ -1,6 +1,6 @@
 package hello.core.member;
 
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
 
@@ -11,6 +11,6 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Member findMember(Long memberId) {
-        return null;
+        return memberRepository.findById(memberId);
     }
 }
