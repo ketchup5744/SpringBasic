@@ -10,22 +10,22 @@ import org.springframework.stereotype.Component;
 public class OrderServiceImpl implements OrderService {
 
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
-//    private final DiscountPollicy discountPollicy = new FixDiscountPollicy();
-//    private final DiscountPollicy discountPollicy = new FixDiscountPollicy();
+//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 
     private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPollicy;
+    private final DiscountPolicy discountPolicy;
 
     @Autowired // 자동으로 의존관계 주입
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPollicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
-        this.discountPollicy = discountPollicy;
+        this.discountPolicy = discountPolicy;
     }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int ItemPrice) {
         Member member = memberRepository.findById(memberId);
-        int discountPrice = discountPollicy.discount(member, ItemPrice);
+        int discountPrice = discountPolicy.discount(member, ItemPrice);
         return new Order(memberId, itemName, ItemPrice, discountPrice);
     }
 
