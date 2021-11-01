@@ -17,7 +17,8 @@ public class BeanLifeCycleTest {
 
     @Configuration
     static class LifeCycleConfig {
-        @Bean
+
+        @Bean // (initMethod = "init", destroyMethod = "close") // destroyMethod 의 defalt 값은 추론해서 close or shutdown 기능을 제  해준다.
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://hello-spring.dev");
